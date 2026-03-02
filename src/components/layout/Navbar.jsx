@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
-import logo from '../../assets/images/logo.png';
 import CartDrawer from './CartDrawer';
 
 export default function Navbar() {
@@ -36,7 +35,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <img src={logo} alt="Oyster Craft" className="h-10 md:h-12 w-auto object-contain" />
+            <img src="/images/logo.png" alt="Oyster Craft" className="h-10 md:h-12 w-auto object-contain" />
           </Link>
 
           {/* Desktop Navigation Links */}
