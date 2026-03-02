@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -7,25 +7,19 @@ import SEO from '../components/seo/SEO';
 export default function ProductDetails() {
   const { id } = useParams();
   const { addToCart } = useCart();
-  const [product, setProduct] = useState(null);
+  const productId = Number(id);
+  const product = useMemo(() => products.find(p => p.id === productId), [productId]);
   const [activeTab, setActiveTab] = useState('description');
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
-  useEffect(() => {
-    // Find product by id (converting string id to number)
-    const foundProduct = products.find(p => p.id === parseInt(id));
-    setProduct(foundProduct);
-    // Reset selected image when product changes
-    setSelectedImage(0);
-  }, [id]);
-
   if (!product) {
-    return <div className="container mx-auto px-4 py-16 text-center">Loading...</div>;
+    return <div className="container mx-auto px-4 py-16 text-center">Product not found</div>;
   }
 
   // Use gallery if available, otherwise fallback to main image
   const images = product.gallery || [product.image];
+  const displayImageIndex = selectedImage < images.length ? selectedImage : 0;
 
   return (
     <div className="bg-white min-h-screen py-12">
@@ -50,7 +44,7 @@ export default function ProductDetails() {
             {/* Main Image */}
             <div className="border border-gray-200 rounded-lg overflow-hidden mb-4 relative aspect-square">
               <img 
-                src={images[selectedImage]} 
+                src={images[displayImageIndex]} 
                 alt={product.name} 
                 className="w-full h-full object-cover object-center"
               />
