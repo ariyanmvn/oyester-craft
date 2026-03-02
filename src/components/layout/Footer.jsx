@@ -28,7 +28,7 @@ export default function Footer() {
           <div className="md:pr-8">
             <div className="mb-6">
               <Link to="/" className="flex flex-col w-16 items-start">
-                <img src="/src/assets/images/logo.png" alt="logo" />
+                <img src="/images/logo.png" alt="logo" />
               </Link>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed text-justify">
