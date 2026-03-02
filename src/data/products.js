@@ -301,6 +301,7 @@ export const products = [
       "/src/assets/images/weavy-3.jpg",
       "/src/assets/images/weavy-4.jpg",
     ],
+    
     features: [
       "Handcrafted ethnic embroidery",
       "Bold geometric patterns",
